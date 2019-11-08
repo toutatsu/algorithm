@@ -12,7 +12,6 @@ class RMQ{
         for(int i=0;i<n*2-1;i++)data[i]=INT_MAX;//木を最大値で初期化
     }
     
-
     void updata(int k,int a){//k番目の要素をaに更新
         k+=n-1;//k番目の葉のインデックス
         data[k]=a;//葉を更新
