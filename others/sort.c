@@ -1,3 +1,4 @@
+//アルゴリズム序論期末レポートより
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>//乱数の種　時間計測用
