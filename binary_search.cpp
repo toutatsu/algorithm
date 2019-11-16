@@ -4,6 +4,6 @@ long long ng=-1LL,ok=1000000000000LL,mid;//ng:解が存在しない値　ok:解�
 
     while(abs(ok-ng)>1LL){
         mid=(ok+ng)/2LL;
-        if(solve(mid,a,f,t))ok=mid;
+        if(solve(?))ok=mid;
         else ng=mid;
     }
