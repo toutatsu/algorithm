@@ -12,5 +12,5 @@ int gcd(int x,int y){//ループ
 int array_gcd(int a[],int size){//複数の数の最大公約数
 	int x=a[0];
 	for(int i=1;i<size;i++)x=gcd(x,a[i]);
-    return x;
+	return x;
 }
