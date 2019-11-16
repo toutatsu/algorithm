@@ -32,3 +32,16 @@ while(!q.empty()){
 
 
 }
+
+//ABC035より
+while(!Q.empty()){
+    pair<long,long>position=Q.top();Q.pop();
+    for(auto x:G[position.second]){
+        long new_cost=position.first+x.second;
+        if(new_cost<d[x.first]){
+            d[x.first]=new_cost;
+            prev[x.first]=position.second;
+            Q.push(make_pair(d[x.first],x.first));
+        }
+    }
+}
