@@ -10,8 +10,7 @@ class disjointset{
 
     vector<int>rank,parent,sz;//木xの高さはrank[x]以下，parentは親ノードの番号，sz[頂点]はその集合の要素の数を指す
 
-    disjointset(){}//なにこれ
-	disjointset(int size){//0,1,2,...size
+　　disjointset(int size){//0,1,2,...size
         //parent=vector<int>(size+1);
         //rank=vector<int>(size+1,0);
         //sz=vector<int>(size+1,1);
@@ -23,7 +22,7 @@ class disjointset{
         vector<int>parent(size+1),rank(size+1,0),sz(rank+1,1);
         iota(parent.begin(),parent.end(),0);
         */  //未確認
-	}
+　　}
 
     int root(int n){return (parent[n]==n?n:parent[n]=root(parent[n]));}//経路圧縮
 
@@ -40,6 +39,10 @@ class disjointset{
 
     int size(int n){return sz[root(n)];}
 };
+
+
+
+//ABC??
 int main(){
     int n,m;
     cin>>n>>m;
