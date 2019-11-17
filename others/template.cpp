@@ -1,3 +1,4 @@
+//----------------template---------------------------------
 #include<bits/stdc++.h>
 //使ったことのあるヘッダファイル
 #include<iostream>
@@ -18,3 +19,15 @@
 #include<numeric>
 #include<bitset>
 #include<regex>
+
+cin.tie(0);
+sync_with_stdio(false);
+
+//cinとcoutの結びつけを解除
+//stdioとの同期をしない
+//入力と出力が非同期化される
+//cinとstdin,coutとstdoutが混在するとバグる可能性
+
+
+
+//-----------------------template----------------------
