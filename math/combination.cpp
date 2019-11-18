@@ -20,7 +20,19 @@ long long nCr(long long n,long long r){
     for(i=1LL;i<=r;nCr%=MOD,i++)nCr*=power(i,MOD-2);//分母
     return nCr;
 }
+//--------------------------------------------------------------------------------------
 
+
+//nCr=(n-1)C(r-1)+(n-1)Crを利用
+//動作未確認
+int comb(int n, int r){
+	int ret;
+	if (n == 0) ret = 1;
+	else if (r == 1) ret = n;
+	else if (r == 0 || n == r) ret = 1;
+	else ret = comb(n-1, r-1) + comb(n-1, r);
+	return ret;
+}
 
 
 
