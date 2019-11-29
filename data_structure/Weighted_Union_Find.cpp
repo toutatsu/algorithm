@@ -31,6 +31,9 @@ class weighted_union_find{
         w+=weight(x);w-=weight(y);//重み修正???????????????????????????????????????????
         x=root(x);y=root(y);
         if(x==y)return false;//すでにつながっているため終了
+      
+      //↑の二行  if(same(x,y))return false;でも行けるか後で試せ
+      
         (rank[x]>rank[y])?parent[y]=x,sz[x]+=sz[y]:parent[x]=y,sz[y]+=sz[x];//低い木が高い木に属する
         rank[root(x)]+=(rank[x]==rank[y]);//同じ高さの場合　頂点の高さを1足す
         (rank[x]>rank[y])?diff_weight[y]=w:diff_weight[x]=-w;
