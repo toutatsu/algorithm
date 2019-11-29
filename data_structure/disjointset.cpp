@@ -1,7 +1,6 @@
+//AOJ Disjoint Set: Union Find Tree verified
 #include<iostream>
 #include<vector>
-//#include<numeric>//for iota
-#include<algorithm>
 using namespace std;
 
 class disjointset{
@@ -10,29 +9,18 @@ class disjointset{
 
     vector<int>rank,parent,sz;//木xの高さはrank[x]以下，parentは親ノードの番号，sz[頂点]はその集合の要素の数を指す
 
-　　disjointset(int size){//0,1,2,...size
-        //parent=vector<int>(size+1);
-        //rank=vector<int>(size+1,0);
-        //sz=vector<int>(size+1,1);
-        //iota(parent.begin(),parent.end(),0);
+    disjointset(int size){//0,1,2,...size
         rank=parent=sz=vector<int>(size+1);
         for(int i=0;i<=size;i++)rank[i]=0,parent[i]=i,sz[i]=1;
-
-        /*
-        vector<int>parent(size+1),rank(size+1,0),sz(rank+1,1);
-        iota(parent.begin(),parent.end(),0);
-        */  //未確認
-　　}
+    }
 
     int root(int n){return (parent[n]==n?n:parent[n]=root(parent[n]));}//経路圧縮
 
     void unite(int x,int y){
         x=root(x);y=root(y);
-        if(x!=y){
-            if(rank[x]>rank[y])parent[y]=x,sz[x]+=sz[y];//低い木が高い木に属する
-            else parent[x]=y,sz[y]+=sz[x];
-            if(rank[x]==rank[y])rank[root(x)]++;//同じ高さの場合　頂点の高さを1足す
-        }
+        if(x==y)return;
+        (rank[x]>rank[y])?parent[y]=x,sz[x]+=sz[y]:parent[x]=y,sz[y]+=sz[x];//低い木が高い木に属する
+        rank[root(x)]+=(rank[x]==rank[y]);//同じ高さの場合　頂点の高さを1足す
     }
 
     bool same(int x,int y){return root(x)==root(y);}
