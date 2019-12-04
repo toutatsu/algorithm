@@ -12,12 +12,14 @@
         graph[a][b]=c;//graph[b][a]=c;  #無向グラフ
     }
 
+    typedef struct{int to;int cost;}edge;
     //隣接リスト
-    vector<pair<int,int>>graph(vertices);
+    vector<edge>graph[vertices];
     for(int i=0;i<edges;i++){
-        int a,b,c;
-        cin>>a>>b>>c;
-        a--;b--;//0オリジン
-        graph[a].push_back(make_pair(b,c));
-        //graph[b].push_back(make_pair(a,c));   #無向グラフ
+        int a;
+        edge e;
+        cin>>a>>e.to>>e.cost;
+        a--;e.to--;//0オリジン
+        graph[a].push_back(e);
+        //graph[b].push_back(e);   #無向グラフ
     }
