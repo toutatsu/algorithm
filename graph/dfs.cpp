@@ -1,3 +1,4 @@
+//basic
 visited[V]=false;
 
 //recursion
@@ -8,20 +9,18 @@ void dfs(int v){
 
 
 
-//stack
+//stackverつくれ
 
 stack<int>s;
-
 s.push_back(0);
 visited[0]=true;
-
 while(!s.empty()){
     int p=s.top();s.pop();
     for(all adjacence vertex)if(!visited[vertex])s.push(vertex),visited[vertex]=true;
 }
 
 
-//木に対しては単一最短経路のコストをdfsで求められる ABC070 D
+//木に対しては単一最短経路のコストをdfsで求められる ABC070 D verified
 
 long long depth[v];
 
