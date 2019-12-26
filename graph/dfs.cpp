@@ -20,13 +20,13 @@ while(!s.empty()){
 }
 
 
-//木に対しては単一最短経路のコストをdfsで求められる ABC070 D verified
+//木に対しては単一最短経路のコストをdfsで求められる ABC070 D, ABC 126 D verified 
 
 long long depth[v];
 
 void dfs(int current_v,int parent,long long cost){
     depth[current_v]=cost;
-    for(auto x:g[current_v])if(x.to!=parent)dfs(x.to,current_v,cost+x.cost);//(木の子孫は全て未訪問)
+    for(auto x:tree[current_v])if(x.to!=parent)dfs(x.to,current_v,cost+x.cost);//(木の子孫は全て未訪問)
     return;
 }
 
