@@ -22,9 +22,9 @@ long long nCr(long long n,long long r){
 }
 //--------------------------------------------------------------------------------------
 
-
+//情報工学実験Ⅰ　asmより
 //nCr=(n-1)C(r-1)+(n-1)Crを利用
-//動作未確認
+//合ってるっぽいが再帰が多くstack over flow　になる　　ABC 094 D
 int comb(int n, int r){
 	int ret;
 	if (n == 0) ret = 1;
