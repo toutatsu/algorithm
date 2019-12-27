@@ -1,4 +1,4 @@
-//AOJ Disjoint Set: Union Find Tree verified
+//AOJ Disjoint Set: Union Find Tree, ABC126 E verified 
 #include<iostream>
 #include<vector>
 using namespace std;
