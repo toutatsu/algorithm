@@ -1,7 +1,7 @@
 //Ford_Fulkerson
 //Maximum Flow
 //各辺の容量は整数値，（有理数）が条件　無理数の場合終了しない可能性
-//O((最大流量)*|E|)
+//最悪計算量　O((最大流量)*|E|)
 
 //AOJ GRL_6_A: Maximum Flow verified
 //蟻本p190参照
