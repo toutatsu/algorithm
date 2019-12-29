@@ -18,14 +18,12 @@ int IsPrime(int n){
 //逆に合成数を見つけるパターン 誰かの pdは0で初期化
 for(int i=2;i<=n;i++)for(int j=i+i;j<=n;j+=i) pd[j]=1;
 
-//素数判定 
+//素数判定 ABC149 C verified
 bool isPrime(int x){
 	if(x<2)return false;
 	else if(x==2)return true;
 	else if(x%2==0)return false;
-	for(int i=3;i*i<=x;i+=2){
-		if(x%i==0)return 0;
-	}
+	for(int i=3;i*i<=x;i+=2)if(x%i==0)return false;
 	return true;
 }
 
