@@ -15,14 +15,12 @@ int array_gcd(int a[],int size){//複数の数の最大公約数
 	return x;
 }
 
+//https://qiita.com/drken/items/b97ff231e43bce50199a
 //verifyしろ
 template<typename T>
 extgcd(T a,T b,T &x,T &y){
-T ret=a
-if(b!=0){
-ret=extgcd(b,a%b,y,x);
-y-=(a/b)*x;
-}
-else{x=1;y=0;}
-return ret;
+	if(b==0)x=1,y=0,return a;
+	T gcd_ab=extgcd(b,a%b,y,x);
+	y-=a/b*x;
+	return gcd_ab;
 }
