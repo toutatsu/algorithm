@@ -15,12 +15,37 @@ int array_gcd(int a[],int size){//複数の数の最大公約数
 	return x;
 }
 
-//https://qiita.com/drken/items/b97ff231e43bce50199a
+
+//以下https://qiita.com/drken/items/b97ff231e43bce50199aより
 //verifyしろ
+
+
+//拡張ユークリッドの互除法
 template<typename T>
 extgcd(T a,T b,T &x,T &y){
 	if(b==0)x=1,y=0,return a;
 	T gcd_ab=extgcd(b,a%b,y,x);
 	y-=a/b*x;
 	return gcd_ab;
+}
+
+
+// 負の数にも対応した mod
+// 例えば -17 を 5 で割った余りは本当は 3 (-17 ≡ 3 (mod. 5))
+// しかし単に -17 % 5 では -2 になってしまう
+inline long long mod(long long a, long long m) {
+    return (a % m + m) % m;
+}
+
+// 中国剰余定理　Chinese Remainder Theorem
+// リターン値を (r, m) とすると解は x ≡ r (mod. m)
+// 解なしの場合は (0, -1) をリターン
+pair<long long, long long> crt(long long b1, long long m1, long long b2, long long m2) {
+  long long p, q;
+  long long d = extGcd(m1, m2, p, q); // p is inv of m1/d (mod. m2/d)
+  if ((b2 - b1) % d != 0) return make_pair(0, -1);
+  long long m = m1 * (m2/d); // lcm of (m1, m2)
+  long long tmp = (b2 - b1) / d * p % (m2/d);
+  long long r = mod(b1 + m1 * tmp, m);
+  return make_pair(r, m);
 }
