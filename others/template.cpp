@@ -31,3 +31,8 @@ sync_with_stdio(false);
 
 
 //-----------------------template----------------------
+
+//高速化
+#pragma GCC target("avx")
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
