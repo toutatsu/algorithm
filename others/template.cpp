@@ -21,7 +21,7 @@
 #include<regex>
 
 cin.tie(0);
-sync_with_stdio(false);
+ios::sync_with_stdio(false);
 
 //cinとcoutの結びつけを解除
 //stdioとの同期をしない
