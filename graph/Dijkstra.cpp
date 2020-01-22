@@ -45,3 +45,34 @@ while(!Q.empty()){
         }
     }
 }
+
+                
+//アルゴリズム論より
+//O(|V|^2)
+//not verified
+#define N 10 /* ノード数 */
+#define INF 10000 /* 十分大きな数 */
+#define FALSE 0
+#define TRUE 1
+
+void dijkstra(int s, int A[][N])
+{
+  int i, j, c, fixed[N], d[N];
+  for (i = 0; i < N; i++) {
+    fixed[i] = FALSE; d[i] = INF;
+  }
+  c = s; d[c] = 0;
+    
+      for (i = N - 1; 0 <= i; i--) {
+    fixed[c] = TRUE;
+    for (j = 0; j < N; j++)
+      if ((A[c][j] != INF) 
+        && (d[c] + A[c][j] < d[j]))
+        d[j] = d[c] + A[c][j];
+    l = INF;
+    for (j = 0; j < N; j++)
+      if ((fixed[j]==FALSE) && (d[j]<l)) {
+        l = d[j]; c = j;
+      }
+  }
+}
