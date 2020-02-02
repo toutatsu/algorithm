@@ -17,18 +17,16 @@ int array_gcd(int a[],int size){//複数の数の最大公約数
 
 
 //以下https://qiita.com/drken/items/b97ff231e43bce50199aより
-//verifyしろ
+//cpawCTF Q26.[PPC]Remainder theorem verified
 
 
 //拡張ユークリッドの互除法
-template<typename T>
-extgcd(T a,T b,T &x,T &y){
-	if(b==0)x=1,y=0,return a;
-	T gcd_ab=extgcd(b,a%b,y,x);
+long long extgcd(long long a,long long b,long long &x,long long &y){
+	if(b==0){x=1,y=0;return a;}
+	long long gcd_ab=extgcd(b,a%b,y,x);
 	y-=a/b*x;
 	return gcd_ab;
 }
-
 
 // 負の数にも対応した mod
 // 例えば -17 を 5 で割った余りは本当は 3 (-17 ≡ 3 (mod. 5))
@@ -42,10 +40,15 @@ inline long long mod(long long a, long long m) {
 // 解なしの場合は (0, -1) をリターン
 pair<long long, long long> crt(long long b1, long long m1, long long b2, long long m2) {
   long long p, q;
-  long long d = extGcd(m1, m2, p, q); // p is inv of m1/d (mod. m2/d)
+  long long d = extgcd(m1, m2, p, q); // p is inv of m1/d (mod. m2/d)
   if ((b2 - b1) % d != 0) return make_pair(0, -1);
   long long m = m1 * (m2/d); // lcm of (m1, m2)
   long long tmp = (b2 - b1) / d * p % (m2/d);
   long long r = mod(b1 + m1 * tmp, m);
   return make_pair(r, m);
+}
+
+int main(){
+    cout<<crt(32134,1584891,193127,3438478).first<<" "<<crt(32134,1584891,193127,3438478).second<<endl;
+    return 0;
 }
