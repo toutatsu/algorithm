@@ -5,3 +5,6 @@ int d8[10]={1,1,1,0,-1,-1,-1,0,1,1};//0-7 2-9
 for(int i=0;i<8;i++)a[d8[i]][d8[i+2]];
 
 for(int dx=-1; dx<=1; dx++)for(int dy=-1; dy<=1; dy++)
+
+
+for(i=0;i<r*c;i++)cin>>s[i/c][i%c];
