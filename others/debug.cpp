@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void flag_check(bool f){cout<<(cout<<f?"true":"false"<<endl;)}
+void flag_check(bool f){cout<<(f?"true":"false")<<endl;}
 
 //変数名と値の出力
 #define dbg(a) cerr<<#a<<":"<<a<<" ";//#は変数名
@@ -18,14 +18,17 @@ void flag_check(bool f){cout<<(cout<<f?"true":"false"<<endl;)}
 #define dbg9(a,b,c,d,e,f,g,h,i) dbg4(a,b,c,d)dbg5(e,f,g,h,i)
 #define dbg10(a,b,c,d,e,f,g,h,i,j) dbg5(a,b,c,d,e)dbg5(f,g,h,i,j)
 
+template<typename T>
+void printa(T& a){
+    for(int i=0;i<sizeof(a)/sizeof(a[0]);i++)cout<<a[i]<<" \n"[i+1==sizeof(a)/sizeof(a[0])];
+}
 #include<vector>
-
 template<typename T>
 void printv(vector<T>v){
     for(int i=0;i<v.size();i++)cout<<v[i]<<" \n"[i+1==v.size()];
 }
-
 template<typename T>
-void print2d(T map,int h,int w){
+void print2d(T& map){
+    int h=sizeof(map)/sizeof(map[0]),w=sizeof(map[0])/sizeof(map[0][0]);
     for(int i=0;i<h*w;i++)cout<<map[i/w][i%w]<<" \n"[i%w+1==w];
 }
