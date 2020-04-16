@@ -1,10 +1,5 @@
-
-
-
-
-
-class XOR_Shift{
-
+//from https://github.com/olphe/temp/blob/master/XorShift.cpp
+class XorShift {
 	unsigned int x, y, z, w, t;
 public:
 	XorShift() {
@@ -22,6 +17,4 @@ public:
 		w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
 		return w & 0x7fffffff;
 	}
-
-
-}
+};
