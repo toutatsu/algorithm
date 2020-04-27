@@ -4,6 +4,31 @@
 //Best-case performance         
 //Worst-case space complexity
 
+
+template<typename T>
+vector<T>dijkstra(Graph<T>graph,int start){
+    //#include<queue>
+    vector<T>dist(graph.Vertex_num,graph.INF);
+    dist[start]=0;
+    priority_queue<pair<T,int>>q;//cost,vertex_num : costでソートさせる
+    pair<T,int>c;
+    q.push(make_pair(0,start));
+    while(!q.empty()){
+        c=q.top(),q.pop();
+        if(dist[c.second]<c.first)continue;//更新済み?@
+        for(typename Graph<T>::edge x:graph.g[c.second]){
+            T new_cost=c.first+x.cost;//現在地までのコスト+頂点x.toへの辺のコスト
+            if(new_cost<dist[x.to]){
+                //prev[x.to]=c.second;//帰り道
+                q.push(make_pair(dist[x.to]=new_cost,x.to));
+            }
+        }
+    }
+    return dist;
+}
+
+
+
 //蟻本97p参考 
 
 //not verified
