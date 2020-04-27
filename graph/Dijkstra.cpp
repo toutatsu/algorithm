@@ -5,18 +5,21 @@
 //Worst-case space complexity
 
 
+//AOJ GRL_1_A: Single Source Shortest Path Verified
 template<typename T>
 vector<T>dijkstra(Graph<T>graph,int start){
     //#include<queue>
     vector<T>dist(graph.Vertex_num,graph.INF);
     dist[start]=0;
-    priority_queue<pair<T,int>>q;//cost,vertex_num : costでソートさせる
     pair<T,int>c;
+    //costで昇順のqueue　costが小さいものから見ていく
+    priority_queue< pair<T,int>, vector<pair<T,int>>, std::greater<pair<T,int>> >q;
     q.push(make_pair(0,start));
     while(!q.empty()){
         c=q.top(),q.pop();
-        if(dist[c.second]<c.first)continue;//更新済み?@
-        for(typename Graph<T>::edge x:graph.g[c.second]){
+        if(dist[c.second]<c.first)continue;//更新済みの頂点
+        for(int i=0;i<graph.g[c.second].size();i++){
+            typename Graph<T>::edge x=graph.g[c.second][i];
             T new_cost=c.first+x.cost;//現在地までのコスト+頂点x.toへの辺のコスト
             if(new_cost<dist[x.to]){
                 //prev[x.to]=c.second;//帰り道
@@ -27,8 +30,18 @@ vector<T>dijkstra(Graph<T>graph,int start){
     return dist;
 }
 
-
-
+int V,E,r;
+int main(){
+    cin>>V>>E>>r;
+    Graph<long long>g(V,E);
+    g.input(true,true);
+    auto v=dijkstra(g,r);
+    for(auto x:v){
+        if(x==g.INF)cout<<"INF"<<endl;
+        else cout<<x<<endl;
+    }
+    return 0;
+}
 //蟻本97p参考 
 
 //not verified
