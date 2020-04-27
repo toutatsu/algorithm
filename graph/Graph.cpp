@@ -9,15 +9,13 @@ class Graph{
     struct edge{int to;T cost;};
     int Vertex_num,Edge_num;
     vector<edge>*g;
-    vector<bool>visited;//dfs用
 
-    const T INF=numeric_limits< T >::max();//#include<limits>
+    const T INF=10000000000000;
 
     Graph(int V,int E){//0～V-1
         Vertex_num=V;
         Edge_num=E;
         g=new vector<edge>[V];
-        visited=vector<bool>(Vertex_num,false);
     }
 
     void emplace_back(int from,int to,T cost){
