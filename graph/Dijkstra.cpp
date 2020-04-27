@@ -42,6 +42,17 @@ int main(){
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 //蟻本97p参考 
 
 //not verified
