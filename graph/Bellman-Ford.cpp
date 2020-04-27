@@ -4,6 +4,46 @@
 //Best-case performance         O(|E|)
 //Worst-case space complexity   O(|V|)
 
+//AOJ GRL_1_B: Single Source Shortest Path (Negative Edges) Verified
+template<typename T>
+vector<T>bellman_ford(Graph<T>graph,int start){
+    vector<T>dist(graph.Vertex_num,graph.INF);
+    dist[start]=0;
+    for(int i=0;i<graph.Vertex_num;i++){//頂点回数
+        for(int v=0;v<graph.Vertex_num;v++){
+            for(int e=0;e<graph.g[v].size();e++){//辺全て
+                if(dist[v]!=graph.INF&&dist[graph.g[v][e].to]>dist[v]+graph.g[v][e].cost){//fromがINFでなくfromからの辺で更新
+                    dist[graph.g[v][e].to]=dist[v]+graph.g[v][e].cost;
+                    if(i==graph.Vertex_num-1)return vector<T>(0);//負閉路
+                }
+            }
+        }
+    }
+    return dist;
+}
+
+int V,E,r;
+int main(){
+    cin>>V>>E>>r;
+    Graph<long long>g(V,E);
+    g.input(true,true);
+    auto v=bellman_ford(g,r);
+    if(v.size()==0){cout<<"NEGATIVE CYCLE"<<endl;return 0;}
+    for(auto x:v){
+        if(x==g.INF)cout<<"INF"<<endl;
+        else cout<<x<<endl;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
 //蟻本89p参考
 
 struct edge{int ,from,to,cost;};
