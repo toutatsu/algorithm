@@ -20,7 +20,7 @@ class Graph{
         visited=vector<bool>(Vertex_num,false);
     }
 
-    void append(int from,int to,T cost){
+    void emplace_back(int from,int to,T cost){
         edge e={to,cost};
         g[from].push_back(e);
         //edges->push_back(e);//for Bellman-Ford
@@ -33,8 +33,8 @@ class Graph{
             cin>>from>>to;
             if(weight)cin>>cost;
             else cost=1;
-            this->append(from,to,cost);
-            if(!direct)this->append(to,from,cost);
+            this->emplace_back(from,to,cost);
+            if(!direct)this->emplace_back(to,from,cost);
         }
     }
 
