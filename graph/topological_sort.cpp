@@ -1,5 +1,38 @@
 //AOJ GRL_4_B Topological Sort verified
 //O(V+E)
+//Graph用
+template<typename T>
+vector<int>topological_sort(Graph<T>graph){
+    //O(V+E)
+    vector<int>indeg(graph.Vertex_num,0),ret;//indeg[i]=頂点iの入次数
+    queue<int>Q;//#include<queue> 入次数が0の頂点のリスト　キューでもスタック stack<int>S でもよい
+    for(int i=0;i<graph.Vertex_num;i++)for(auto x:graph.g[i])indeg[x.to]++;//入次数をカウント
+    for(int i=0;i<graph.Vertex_num;i++)if(indeg[i]==0)Q.push(i);//入次数が0の頂点を入れる
+    while(!Q.empty()){
+        int v=Q.front();Q.pop();
+        ret.push_back(v);
+        for(auto x:graph.g[v]){
+            indeg[x.to]--;//頂点に繋がる頂点の入次数を減らす
+            if(indeg[x.to]==0)Q.push(x.to);//入次数が0になったら追加
+        }
+    }
+    //もし入次数が0でない頂点が残っていたらDAGでない
+    if(ret.size()!=graph.Vertex_num)return vector<int>(0);//cerr<<"閉路有 DAGではありません"<<endl;
+    return ret;
+}
+int V,E;
+int main(){
+    cin>>V>>E;
+    Graph<long long>g(V,E);
+    g.input(true,false);
+    auto t=topological_sort(g);
+    for(auto x:t)cout<<x<<endl;
+    return 0;
+}
+
+
+//AOJ GRL_4_B Topological Sort verified
+//O(V+E)
 vector<int> t_sort(vector<int>g[]){
     vector<int>indeg(v,0),ret;//indeg[i]=頂点iの入次数
     queue<int>Q;//stack<int>S;//入次数が0の頂点のリスト　キューでもスタックでもよい
