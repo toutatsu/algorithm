@@ -1,3 +1,21 @@
+//Graph用のbfs
+template<typename T>
+vector<T>bfs(Graph<T>graph,int start){
+    vector<T>dist(graph.Vertex_num,-1);//訪問:startからの距離 未訪問:-1
+    queue<int>q;
+    q.push(start);
+    dist[start]=0;
+    while(!q.empty()){
+        int p=q.front();q.pop();
+        for(auto x:graph.g[p])if(dist[x.to]==-1){dist[x.to]=dist[p]+x.cost;q.push(x.to);}
+        //visited[]の更新はpushするときにやらないとqueueがあふれる↑
+    }
+    return dist;
+}
+
+
+
+
 //ABC146D verified
 
     queue<int>q;
