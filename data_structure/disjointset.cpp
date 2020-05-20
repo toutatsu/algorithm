@@ -9,11 +9,11 @@ class disjointset{
 
     vector<int>rank,parent,sz;//木xの高さはrank[x]以下，parentは親ノードの番号，sz[頂点]はその集合の要素の数を指す
 
-    disjointset(int size){//0,1,2,...size
+    disjointset(int size){//0,1,2,...size　　←注意
         rank=parent=sz=vector<int>(size+1);
         for(int i=0;i<=size;i++)rank[i]=0,parent[i]=i,sz[i]=1;
     }
-
+　  //注意 parent配列はrootを呼ばないと更新されない
     int root(int n){return (parent[n]==n?n:parent[n]=root(parent[n]));}//経路圧縮
 
     void unite(int x,int y){
