@@ -8,3 +8,6 @@ for(int dx=-1; dx<=1; dx++)for(int dy=-1; dy<=1; dy++)
 
 
 for(i=0;i<r*c;i++)cin>>s[i/c][i%c];
+
+
+#define STR(var) #var   //引数にした変数を変数名を示す文字列リテラルとして返すマクロ関数
