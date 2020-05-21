@@ -9,5 +9,5 @@ long long ng=-1LL,ok=1000000000000LL,mid;//ng:解が存在しない値　ok:解�
         else ng=mid;
     }
 
-//ABC146 verified
+//ABC146 AGC011B verified
 while(abs(ok-ng)>1LL)mid=(ok+ng)/2LL,(solve(mid))?ok=mid:ng=mid;
