@@ -35,11 +35,11 @@ int IsPrime(int n){
 }
 
 
-//素因数分解 ABC 114 D Verified
-
-vector<int>prime_factor(int n){
-	vector<int>factor(100+1,0);
-    for(int i=2;i*i<=n;i++)while(n%i==0){factor[i]++;n/=i;}
-    if(n!=1)factor[n]=1;
+//素因数分解 ARC 026 Verified
+#include<map>
+map<long long,int>prime_factor(long long n){
+	map<long long,int>factor;
+    for(long long i=2LL;i*i<=n;i++)while(n%i==0LL){factor[i]++;n/=i;}
+    if(n!=1LL)factor[n]=1;
     return factor;
 }
