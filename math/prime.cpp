@@ -30,6 +30,7 @@ bool isPrime(int x){
 
 //※動作未確認
 int IsPrime(int n){
+	if 0 or 1 return false;
 	for(int i=2;i*i<=n;i+=2)if(!n%i)return false;
 	return true;
 }
