@@ -44,3 +44,30 @@ map<long long,int>prime_factor(long long n){
     if(n!=1LL)factor[n]=1;
     return factor;
 }
+
+
+//ABC177 E
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>prime(int N){
+    vector<int>factor(N+1);//factor[i]:iの最小の素因数 iが素数の場合は0
+    factor[0]=-1,factor[1]=-1;
+    for(int i=2;i*i<=N;i++){
+        if(factor[i]!=0)continue;
+        for(int j=i*2;j<=N;j+=i)if(factor[j]==0)factor[j]=i;
+    }
+    return factor;//最小素因数を持った配列
+}
+vector<int>S(1000000001);
+
+map<int,int>osa_k(int N){//高速な素因数分解　O(logN)?
+    //vector<int>factor=prime(N);
+    //S : 最小素因数を持った配列
+    map<int,int>prime_factor;
+    if(N==0||N==1)return prime_factor;
+    for(;S[N]!=0;N/=S[N])prime_factor[S[N]]++;
+    prime_factor[N]++;
+    return prime_factor;
+}
+
