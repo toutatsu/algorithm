@@ -1,3 +1,15 @@
+//https://atcoder.jp/contests/sumitrust2019/submissions/16419213
+template <long long Mod> class mod_int{
+    public:
+    long long x;
+    mod_int(long long x=0LL):x((x%Mod+Mod)%Mod){};
+    mod_int& operator*=(const mod_int<Mod>a) {(x*=a.x)%=Mod; return *this;}
+    friend ostream& operator<<(ostream& os, const mod_int<Mod>& a) { return os<<a.x;}
+};
+
+
+
+
 //ABC163 D
 
 
