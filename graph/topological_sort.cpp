@@ -1,4 +1,7 @@
 //AOJ GRL_4_B Topological Sort verified
+//AtCoder Beginner Contest 021 C
+//https://atcoder.jp/contests/abc021/submissions/16442866
+
 //O(V+E)
 //Graph用
 template<typename T>
