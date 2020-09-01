@@ -1,4 +1,8 @@
 //Graph用のbfs
+
+//AtCoder Beginner Contest 021 C
+//https://atcoder.jp/contests/abc021/submissions/16442866
+
 template<typename T>
 vector<T>bfs(Graph<T>graph,int start){
     vector<T>dist(graph.Vertex_num,-1);//訪問:startからの距離 未訪問:-1
