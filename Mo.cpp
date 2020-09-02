@@ -1,6 +1,8 @@
 //AtCoder Beginner Contest 174 F
 //https://atcoder.jp/contests/abc174/submissions/16468562
 
+
+//O((add,delの計算量)(N+Q)√N+QlogQ)
 #include<iostream>
 #include<vector>
 #include<cmath>
@@ -13,10 +15,12 @@ class Mo{
     struct query{int l,r;};
     vector<int>data,order;
     vector<query>q;
-
+    
+    //クエリに合わせて実装//
     vector<int>cnt;
     void add(int idx){ans+=(++cnt[data[idx]]==1);}
     void del(int idx){ans-=(--cnt[data[idx]]==0);}
+    //クエリに合わせて実装//
 
     Mo(int N,int Q):N(N),Q(Q),data(N+1),order(Q),q(Q),cnt(N+1,0){}
 
