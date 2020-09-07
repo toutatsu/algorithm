@@ -1,3 +1,38 @@
+//AC Library 参考
+//AOJ Disjoint Set: Union Find Tree
+//あとでABC126 と size()のverify
+class disjointset{
+
+    private:
+    int sz;
+    vector<int>parent_or_size;//親ノードの番号 or -(集合の大きさ)
+
+    public:
+    disjointset():sz(0){}
+    disjointset(int n):sz(n),parent_or_size(n,-1){}
+
+    //経路圧縮 parent配列の更新
+    int root(int n){
+        assert(0<=n&&n<sz);
+        return (parent_or_size[n]<0?n:parent_or_size[n]=root(parent_or_size[n]));
+    }
+
+    int unite(int x,int y){
+        assert(0<=x&&x<sz && 0<=y&&y<sz);
+        x=root(x);y=root(y);
+        if(x==y)return;
+        if(-parent_or_size[x]<-parent_or_size[y])std::swap(x, y);
+        parent_or_size[x] += parent_or_size[y]; //集合の大きさ更新
+        parent_or_size[y] = x;                  //小さい木が大きい木に属する
+        return x;//x,yの代表
+    }
+
+    bool same(int x,int y){assert(0<=x&&x<sz && 0<=y&&y<sz);return root(x)==root(y);}
+
+    int size(int n){assert(0<=n&&n<sz);return -parent_or_size[root(n)];}
+};
+
+
 //AOJ Disjoint Set: Union Find Tree, ABC126 E verified 
 #include<iostream>
 #include<vector>
