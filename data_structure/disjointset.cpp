@@ -1,9 +1,14 @@
 //AC Library 参考
 //AOJ Disjoint Set: Union Find Tree
 //あとでABC126 と size()のverify
+#include<iostream>
+#include<vector>
+#include<cassert>
+using namespace std;
+
 class disjointset{
 
-    private:
+    protected:
     int sz;
     vector<int>parent_or_size;//親ノードの番号 or -(集合の大きさ)
 
@@ -17,21 +22,64 @@ class disjointset{
         return (parent_or_size[n]<0?n:parent_or_size[n]=root(parent_or_size[n]));
     }
 
-    int unite(int x,int y){
+    int unite(int x,int y){//x,yの代表を返す
         assert(0<=x&&x<sz && 0<=y&&y<sz);
-        x=root(x);y=root(y);
-        if(x==y)return;
-        if(-parent_or_size[x]<-parent_or_size[y])std::swap(x, y);
-        parent_or_size[x] += parent_or_size[y]; //集合の大きさ更新
-        parent_or_size[y] = x;                  //小さい木が大きい木に属する
-        return x;//x,yの代表
+        if((x=root(x))==(y=root(y)))return x;
+        if(size(x)<size(y))std::swap(x, y);
+        parent_or_size[x]+=parent_or_size[y]; //集合の大きさ更新
+        parent_or_size[y]=x;                  //小さい木が大きい木に属する
+        return x;
     }
 
     bool same(int x,int y){assert(0<=x&&x<sz && 0<=y&&y<sz);return root(x)==root(y);}
 
     int size(int n){assert(0<=n&&n<sz);return -parent_or_size[root(n)];}
+
+    void groups(){
+        //AC Libary 後で実装
+    }
 };
 
+
+//bug
+class weighted_union_find:public disjointset{
+
+    public:
+    vector<int>diff_weight;//親ノードとの値の差
+
+    public:
+    weighted_union_find(int n):disjointset::disjointset(n),diff_weight(n,0){};
+
+    //経路圧縮 parent配列の更新 と同時に値を累積和
+    int root(int n){
+        assert(0<=n&&n<sz);
+        if(parent_or_size[n]<0)return n;
+
+        int r=(root(parent_or_size[n]));//親まで経路圧縮&累積和
+        diff_weight[n]+=diff_weight[parent_or_size[n]];//累積和
+        return parent_or_size[n]=r;//経路圧縮
+    }
+    
+    int weight(int n){root(n);return diff_weight[n];}
+
+    bool unite(int x,int y,int w){
+        assert(0<=x&&x<sz && 0<=y&&y<sz);
+        w+=weight(x)-weight(y);
+        if((x=root(x))==(y=root(y)))return false;
+        //cout<<size(x)<<" "<<size(y)<<endl;
+        if(size(x)<size(y)){std::swap(x, y);w*=-1;}
+        parent_or_size[x]+=parent_or_size[y]; //集合の大きさ更新
+        parent_or_size[y]=x;                  //小さい木が大きい木に属する
+        diff_weight[y]=w;
+        return true;
+    }
+
+    int diff(int x,int y){return weight(y)-weight(x);}
+};
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //AOJ Disjoint Set: Union Find Tree, ABC126 E verified 
 #include<iostream>
