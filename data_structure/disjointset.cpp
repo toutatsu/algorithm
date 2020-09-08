@@ -7,7 +7,6 @@
 using namespace std;
 
 class disjointset{
-
     protected:
     int sz;
     vector<int>parent_or_size;//親ノードの番号 or -(集合の大きさ)
@@ -40,11 +39,11 @@ class disjointset{
     }
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////
 
-//bug
+//AOJ Weighted Union Find Trees
 class weighted_union_find:public disjointset{
 
-    public:
     vector<int>diff_weight;//親ノードとの値の差
 
     public:
@@ -54,7 +53,6 @@ class weighted_union_find:public disjointset{
     int root(int n){
         assert(0<=n&&n<sz);
         if(parent_or_size[n]<0)return n;
-
         int r=(root(parent_or_size[n]));//親まで経路圧縮&累積和
         diff_weight[n]+=diff_weight[parent_or_size[n]];//累積和
         return parent_or_size[n]=r;//経路圧縮
@@ -66,21 +64,34 @@ class weighted_union_find:public disjointset{
         assert(0<=x&&x<sz && 0<=y&&y<sz);
         w+=weight(x)-weight(y);
         if((x=root(x))==(y=root(y)))return false;
-        //cout<<size(x)<<" "<<size(y)<<endl;
-        if(size(x)<size(y)){std::swap(x, y);w*=-1;}
+        if(size(x)<=size(y)){std::swap(x, y);w*=-1;}
         parent_or_size[x]+=parent_or_size[y]; //集合の大きさ更新
         parent_or_size[y]=x;                  //小さい木が大きい木に属する
         diff_weight[y]=w;
         return true;
     }
-
+    bool same(int x,int y){assert(0<=x&&x<sz && 0<=y&&y<sz);return root(x)==root(y);}
     int diff(int x,int y){return weight(y)-weight(x);}
 };
 
+#include<string>
+int main(){
+    int n,q,com,x,y,z;
+    cin>>n>>q;
+    weighted_union_find ds(n);
+    for(int i=0;i<q;i++){
+        cin>>com>>x>>y;
+        if(com){if(ds.same(x,y))cout<<ds.diff(x,y)<<endl;else cout<<"?"<<endl;}
+        else {cin>>z;ds.unite(x,y,z);}
+    }
+    return 0;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//アルゴリズムとデータ構造 rankを用いた実装
 //AOJ Disjoint Set: Union Find Tree, ABC126 E verified 
 #include<iostream>
 #include<vector>
