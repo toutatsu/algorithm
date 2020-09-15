@@ -3,11 +3,32 @@ template <long long Mod> class mod_int{
     public:
     long long x;
     mod_int(long long x=0LL):x((x%Mod+Mod)%Mod){};
-    mod_int& operator+=(const mod_int<Mod>a) {(x+=a.x)%=Mod; return *this;}
-    mod_int& operator*=(const mod_int<Mod>a) {(x*=a.x)%=Mod; return *this;}
-    friend ostream& operator<<(ostream& os, const mod_int<Mod>& a) { return os<<a.x;}
-};
 
+    mod_int operator-()const{return mod_int(-x);}
+
+    mod_int pow(long long t)const{
+        if(!t)return 1;
+        mod_int<Mod>a=pow(t>>1);
+        a*=a;
+        if(t&1)a*=*this;
+        return a;
+    }
+    //for prime mod
+    mod_int inv()const{return pow(Mod-2);}
+
+    mod_int operator+(const mod_int<Mod>a)const{return mod_int<Mod>(*this)+=a;}
+    mod_int operator-(const mod_int<Mod>a)const{return mod_int<Mod>(*this)-=a;}
+    mod_int operator*(const mod_int<Mod>a)const{return mod_int<Mod>(*this)*=a;}
+    mod_int operator/(const mod_int<Mod>a)const{return mod_int<Mod>(*this)/=a;}//for prime mod
+
+    mod_int& operator+=(const mod_int<Mod>a){(x+=a.x)%=Mod;return *this;}
+    mod_int& operator-=(const mod_int<Mod>a){if((x+=Mod-a.x)>=Mod)x-=Mod;return *this;}
+    mod_int& operator*=(const mod_int<Mod>a){(x*=a.x)%=Mod;return *this;}
+    mod_int& operator/=(const mod_int<Mod>a){return *this *= a.inv();}//for prime mod
+
+    friend istream& operator>>(istream& is,mod_int<Mod>& a){return is>>a.x;}
+    friend ostream& operator<<(ostream& os, const mod_int<Mod>& a){return os<<a.x;}
+};
 
 
 
