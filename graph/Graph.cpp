@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<limits>
 using namespace std;
 
 template<typename T>
@@ -10,7 +9,12 @@ class Graph{
     int Vertex_num,Edge_num;
     vector<edge>*g;
 
-    const T INF=10000000000000;
+    const T INF=1000000000;
+    
+    Graph(int V){//0～V-1
+        Vertex_num=V;
+        g=new vector<edge>[V];
+    }
 
     Graph(int V,int E){//0～V-1
         Vertex_num=V;
