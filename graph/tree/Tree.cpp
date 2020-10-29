@@ -8,15 +8,6 @@ class Tree : public Graph<T>{
         parent=vector<T>(Graph<T>::Vertex_num,-1);
     };
 
-    //木に対しては単一最短経路のコストをdfsで求められる ABC070 D, ABC 126 D,ABC 148 F verified 
-
-    void Tree_dfs(int current_v,int parent_v,T cost){
-        parent[current_v]=parent_v;
-        depth[current_v]=cost;
-        for(auto x:Graph<T>::g[current_v])if(x.to!=parent_v)dfs(x.to,current_v,cost+x.cost);//(木の子孫は全て未訪問)
-    }
-    void dfs(int root){Tree_dfs(root,-1,0LL);}//再帰関数の呼び出し
-
     T tree_diameter(){
         vector<T>a=Graph<T>::bfs(0);
         int idx=-1,ma=-1;
