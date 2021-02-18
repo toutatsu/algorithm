@@ -4,6 +4,7 @@
 #include<functional>
 using namespace std;
 
+//AtCoder Beginner Contest 185 F
 //ACL D
 template<class Monoid>class SegmentTree{
     //0-index
