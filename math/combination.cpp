@@ -59,7 +59,7 @@ unsigned long long combination(int n,int k){
 
 //////2//////////////
 
-------------------ABC132 他の人(chanciiさん)のcombinationより------------------------------
+//------------------ABC132 他の人(chanciiさん)のcombinationより------------------------------
 int n,k,c[N][N];//<-0で初期化
 
 	for(int i=0;i<=n+1;i++)
