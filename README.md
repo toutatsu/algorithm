@@ -3,5 +3,4 @@
 
 ***
 
-- [ ] mo
 - [ ] lazy segment tree
