@@ -1,0 +1,25 @@
+services:
+
+    gcc:
+        image: gcc_image:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+
+        container_name: gcc_container
+        hostname: gcc
+
+        stdin_open: true
+        tty: true
+
+        # command: bin/bash
+
+        expose:
+            - 9225
+        ports:
+            -   "9225:9225"
+
+        volumes:
+            -   type: bind
+                source: .
+                target: /root/workspace/
